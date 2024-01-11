@@ -32,6 +32,3 @@ class WorkUaSpider(scrapy.Spider):
             title = card.css(".add-bottom").xpath("./h2/a/@title").get()
             item = {"title": title, "salary": salary, "description": description, "employer": employer}
             yield item
-
-
-# /html/body/section/div/div[3]/div[1]/div[2]/div[4]/div[4]/span[1]/span
