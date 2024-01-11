@@ -29,4 +29,6 @@ class WorkUaSpider(scrapy.Spider):
             if vacancy_url is None:
                 continue
             yield response.follow(vacancy_url, callback=self.parse_vacancy)
-        # TODO: pagination
+        next_page = response.css(".pagination").xpath("./li")[-1].xpath("./a/@href").get()
+        if next_page is not None:
+            yield response.follow(next_page, callback=self.parse)
